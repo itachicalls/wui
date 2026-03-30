@@ -1,13 +1,11 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/**/*.js", "use": "@vercel/node" },
+    { "src": "api/data.js", "use": "@vercel/node" },
     { "src": "public/**", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/series/([^/]+)", "dest": "/api/series/[key].js?key=$1" },
-    { "src": "/api/multi", "dest": "/api/multi.js" },
-    { "src": "/api/series-list", "dest": "/api/series-list.js" },
+    { "src": "/api/data", "dest": "/api/data.js" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
