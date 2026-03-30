@@ -71,25 +71,19 @@ function fP(v){if(v==null||isNaN(v))return'--';return(v>=0?'+':'')+v.toFixed(1)+
 function filt(data,r){if(r==='all')return data;const c=new Date();c.setFullYear(c.getFullYear()-+r);return data.filter(d=>pd(d.date)>=c)}
 function sd(a){if(!a.length)return 0;const m=a.reduce((s,v)=>s+v,0)/a.length;return Math.sqrt(a.reduce((s,v)=>s+(v-m)**2,0)/a.length)}
 function parseCSV(csv){const lines=csv.trim().split('\n'),obs=[];for(let i=1;i<lines.length;i++){const[d,v]=lines[i].split(',');if(!d||!v||v==='.')continue;const n=parseFloat(v);if(!isNaN(n))obs.push({date:d.trim(),value:n})}return obs}
-async function fredDirect(seriesId){
-  const urls=[
-    `/api/data?key=${seriesId}`,
-    `https://corsproxy.io/?url=${encodeURIComponent(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${seriesId}`)}`,
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${seriesId}`)}`
+function parseFredJson(json){return(json.observations||[]).filter(o=>o.value&&o.value!=='.').map(o=>({date:o.date,value:parseFloat(o.value)})).filter(o=>!isNaN(o.value))}
+async function tryFetch(url,ms){const r=await fetch(url,{signal:AbortSignal.timeout(ms)});if(!r.ok)throw new Error(r.status);return r}
+async function api(key){
+  const sid=SERIES_IDS[key]||key;
+  const attempts=[
+    async()=>{const r=await tryFetch(`/api/data?key=${sid}`,8000);const j=await r.json();return j.observations},
+    async()=>{const r=await tryFetch(`https://api.stlouisfed.org/fred/series/observations?series_id=${sid}&file_type=json&api_key=${window.__FRED_KEY||''}`,8000);return parseFredJson(await r.json())},
+    async()=>{const r=await tryFetch(`https://corsproxy.io/?url=${encodeURIComponent(`https://api.stlouisfed.org/fred/series/observations?series_id=${sid}&file_type=json`)}`,8000);return parseFredJson(await r.json())},
+    async()=>{const r=await tryFetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(`https://fred.stlouisfed.org/graph/fredgraph.csv?id=${sid}`)}`,8000);return parseCSV(await r.text())},
   ];
-  for(const u of urls){
-    try{
-      const r=await fetch(u,{signal:AbortSignal.timeout(12000)});
-      if(!r.ok)continue;
-      const txt=await r.text();
-      try{const j=JSON.parse(txt);if(j.observations)return j.observations;if(Array.isArray(j))return j}catch(_){}
-      const obs=parseCSV(txt);
-      if(obs.length)return obs;
-    }catch(_){}
-  }
-  throw new Error(`Failed to fetch ${seriesId}`);
+  for(const fn of attempts){try{const d=await fn();if(d&&d.length)return d}catch(_){}}
+  throw new Error(`Failed: ${key}`);
 }
-async function api(key){return fredDirect(SERIES_IDS[key]||key)}
 async function apiMulti(keys){const results={};await Promise.all(keys.map(async k=>{try{results[k]=await api(k)}catch(_){}}));return results}
 
 function countUp(el,target,dur=700){const t0=performance.now();(function tick(now){const p=Math.min((now-t0)/dur,1);el.textContent=fmt(target*(1-(1-p)**3));if(p<1)requestAnimationFrame(tick);else el.textContent=fmt(target)})(t0)}

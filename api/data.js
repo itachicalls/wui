@@ -1,25 +1,27 @@
+const API_KEY = process.env.FRED_API_KEY || '';
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
   res.setHeader('Cache-Control', 's-maxage=21600, stale-while-revalidate=3600');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
 
   const seriesId = req.query.key;
   if (!seriesId) return res.status(400).json({ error: 'Provide ?key=SERIES_ID' });
+  if (!API_KEY) return res.status(500).json({ error: 'FRED_API_KEY not configured' });
 
   try {
-    const url = `https://fred.stlouisfed.org/graph/fredgraph.csv?id=${seriesId}`;
-    const r = await fetch(url, {
-      headers: { 'User-Agent': 'WUI-Tracker/1.0', Accept: 'text/csv' },
-    });
-    if (!r.ok) throw new Error(`FRED returned ${r.status}`);
-    const csv = await r.text();
-    const lines = csv.trim().split('\n');
-    const observations = [];
-    for (let i = 1; i < lines.length; i++) {
-      const [date, value] = lines[i].split(',');
-      if (!date || !value || value === '.') continue;
-      const num = parseFloat(value);
-      if (!isNaN(num)) observations.push({ date: date.trim(), value: num });
-    }
+    const url = `https://api.stlouisfed.org/fred/series/observations?series_id=${seriesId}&file_type=json&api_key=${API_KEY}`;
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`FRED API ${r.status}`);
+    const json = await r.json();
+
+    const observations = (json.observations || [])
+      .filter(o => o.value && o.value !== '.')
+      .map(o => ({ date: o.date, value: parseFloat(o.value) }))
+      .filter(o => !isNaN(o.value));
+
     if (!observations.length) throw new Error('No data returned');
     res.json({ observations });
   } catch (err) {
