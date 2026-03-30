@@ -153,7 +153,7 @@ function mkRt(id,data,color,liveId){const el=document.getElementById(id);if(!el|
 function renderRt(){const epuD=filt(rtData.epu_us_daily||[],rtRange),emvD=filt(rtData.emv_daily||[],rtRange),epuM=filt(rtData.epu_us_monthly||[],rtRange==='0.25'?'1':rtRange==='0.5'?'2':rtRange);if(!epuCh){const r=mkRt('epuCh',epuD,'#6366f1','epuLv');epuCh=r.c;epuSr=r.s}if(epuSr&&epuD.length){epuSr.setData(epuD.map(d=>({time:d.date,value:d.value})));epuCh.timeScale().fitContent();const l=epuD[epuD.length-1];if(l)document.getElementById('epuLv').textContent=l.value.toFixed(1)}if(!emvCh){const r=mkRt('emvCh',emvD,'#06b6d4','emvLv');emvCh=r.c;emvSr=r.s}if(emvSr&&emvD.length){emvSr.setData(emvD.map(d=>({time:d.date,value:d.value})));emvCh.timeScale().fitContent();const l=emvD[emvD.length-1];if(l)document.getElementById('emvLv').textContent=l.value.toFixed(1)}if(!epuMCh){const r=mkRt('epuMCh',epuM,'#8b5cf6','epuMLv');epuMCh=r.c;epuMSr=r.s}if(epuMSr&&epuM.length){epuMSr.setData(epuM.map(d=>({time:d.date,value:d.value})));epuMCh.timeScale().fitContent();const l=epuM[epuM.length-1];if(l)document.getElementById('epuMLv').textContent=l.value.toFixed(1)}}
 
 // ═══ TAB SYSTEM ═══
-function initTabs(){document.querySelectorAll('#tabBar .tab-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#tabBar .tab-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('pane-'+btn.dataset.tab).classList.add('active');if(btn.dataset.tab==='worldmap'&&!mapRendered)initMap();if(btn.dataset.tab==='web'&&!webRendered)initWeb();if(btn.dataset.tab==='sources')renderSources()})})}
+function initTabs(){document.querySelectorAll('#tabBar .tab-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#tabBar .tab-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('pane-'+btn.dataset.tab).classList.add('active');if(btn.dataset.tab==='worldmap'&&!mapRendered){try{initMap()}catch(e){console.warn('Map error:',e)}}if(btn.dataset.tab==='web'&&!webRendered){initWeb().catch(e=>console.warn('Web error:',e))}if(btn.dataset.tab==='sources'){try{renderSources()}catch(e){console.warn('Sources error:',e)}}})})}
 
 // ═══ WORLD MAP (D3 Orthographic Globe) ═══
 async function initMap(){
@@ -210,8 +210,11 @@ async function initMap(){
 }
 
 // ═══ UNCERTAINTY WEB (3D Force Graph + Side Feed) ═══
-function initWeb(){
-  webRendered=true;const box=document.getElementById('webBox');box.innerHTML='';
+async function initWeb(){
+  webRendered=true;const box=document.getElementById('webBox');
+  box.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:580px;gap:10px;color:#8585a0;font-size:.85rem"><div style="width:24px;height:24px;border:2px solid rgba(255,255,255,.06);border-top-color:#6366f1;border-radius:50%;animation:spin .6s linear infinite"></div>Loading 3D engine...</div>';
+  if(typeof ForceGraph3D==='undefined'){try{await new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://unpkg.com/3d-force-graph';s.onload=res;s.onerror=rej;document.head.appendChild(s)})}catch(_){box.innerHTML='<div style="text-align:center;padding:60px 20px;color:#8585a0">3D visualization unavailable on this device.</div>';return}}
+  box.innerHTML='';
   const feed=document.getElementById('webFeed');
   const riskClr=k=>{const ctx=CTX[k];if(!ctx)return'#8585a0';return ctx.risk==='high'?'#ef4444':ctx.risk==='moderate'?'#eab308':'#22c55e'};
 
@@ -318,13 +321,20 @@ function initControls(){
 }
 
 // ── Init ──
+function safe(fn){try{fn()}catch(e){console.warn('Non-critical error:',e)}}
 async function init(){
-  startClock();initControls();initTabs();renderTimeline();initReveal();
+  try{startClock()}catch(_){}
+  try{initControls()}catch(_){}
+  try{initTabs()}catch(_){}
+  try{renderTimeline()}catch(_){}
+  try{initReveal()}catch(_){}
   try{
     const[g,regs,countries,rt]=await Promise.all([api('global_simple'),apiMulti([...Object.keys(REGIONS),'advanced','emerging']),apiMulti(Object.keys(COUNTRIES)),apiMulti(['epu_us_daily','epu_us_monthly','emv_daily'])]);
     gData=g;regData=regs;cData=countries;rtData=rt;
-    setStats(gData);initHero(gData);initTicker(countries);renderRt();renderMovers(countries);renderAE(regs,'20');renderReg(regs,'20');renderCards(countries);
-    setInterval(async()=>{try{gData=await api('global_simple');setStats(gData);updateHero(gData)}catch(e){console.warn('Refresh failed:',e)}},6*60*60*1000);
-  }catch(err){console.error('Load failed:',err);document.getElementById('heroChart').innerHTML=`<div style="text-align:center;color:#ef4444;padding:60px 20px;font-size:.85rem">Failed to load FRED data.<br><small style="color:#52526e">${err.message}</small></div>`}
+    safe(()=>setStats(gData));safe(()=>initHero(gData));safe(()=>initTicker(countries));safe(()=>renderRt());safe(()=>renderMovers(countries));safe(()=>renderAE(regs,'20'));safe(()=>renderReg(regs,'20'));safe(()=>renderCards(countries));
+    setInterval(async()=>{try{gData=await api('global_simple');setStats(gData);updateHero(gData)}catch(e){console.warn('Refresh:',e)}},6*60*60*1000);
+  }catch(err){console.error('Load failed:',err);const h=document.getElementById('heroChart');if(h)h.innerHTML=`<div style="text-align:center;color:#ef4444;padding:60px 20px;font-size:.85rem">Failed to load data.<br><small style="color:#52526e">${err.message}</small></div>`}
 }
+window.addEventListener('error',e=>console.warn('Global:',e.message));
+window.addEventListener('unhandledrejection',e=>{e.preventDefault();console.warn('Promise:',e.reason)});
 document.addEventListener('DOMContentLoaded',init);
