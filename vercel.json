@@ -8,5 +8,16 @@
     { "src": "/api/data", "dest": "/api/data.js" },
     { "src": "/api/multi", "dest": "/api/multi.js" },
     { "src": "/(.*)", "dest": "/public/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; base-uri 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://vercel.live https://va.vercel-scripts.com https://terminal.jup.ag; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https: wss:; frame-src https://dexscreener.com https://*.dexscreener.com https://terminal.jup.ag https://*.jup.ag; worker-src 'self' blob:; child-src 'self' blob: https://dexscreener.com https://*.dexscreener.com;"
+        }
+      ]
+    }
   ]
 }

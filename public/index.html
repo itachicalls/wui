@@ -429,6 +429,7 @@
     .corr-insight{font-size:.74rem;color:var(--tx2);line-height:1.5}
 
     /* Scenario */
+    .scn-lbl{display:block;font-size:.58rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
     .scn-select{width:100%;background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rs);color:var(--wh);padding:10px 14px;font-family:'Inter',sans-serif;font-size:.82rem;cursor:pointer;margin-bottom:14px;appearance:none;outline:none}.scn-select:focus{border-color:var(--ac)}
     .scn-select option{background:var(--bg2);color:var(--wh)}
     .scn-result{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
@@ -886,7 +887,8 @@
       <div class="section">
         <div class="sh"><div><div class="section-title">Scenario Simulation</div><div class="ss">Hypothetical analysis — select a scenario</div></div></div>
         <div class="card">
-          <select class="scn-select" id="i-scn-sel">
+          <label for="i-scn-sel" class="scn-lbl">Scenario</label>
+          <select class="scn-select" id="i-scn-sel" name="intel-scenario" aria-label="Select a macro scenario to simulate">
             <option value="">Select a scenario&hellip;</option>
             <option value="oil_120">Oil hits $120/barrel</option>
             <option value="china_taiwan">China-Taiwan escalation</option>

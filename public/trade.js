@@ -365,7 +365,7 @@ const TRADE = {
           <button class="pm-side pm-s-yes${this.side === 'yes' ? ' on' : ''}" onclick="TRADE.setSide('yes')">Buy YES</button>
           <button class="pm-side pm-s-no${this.side === 'no' ? ' on' : ''}" onclick="TRADE.setSide('no')">Buy NO</button>
         </div>
-        <div class="pm-field"><label class="pm-lbl">Shares</label><input type="number" id="pm-shares" class="pm-input" value="10" min="1" max="500" oninput="TRADE.updatePreview()"></div>
+        <div class="pm-field"><label class="pm-lbl" for="pm-shares">Shares</label><input type="number" id="pm-shares" name="pm-shares" class="pm-input" value="10" min="1" max="500" autocomplete="off" oninput="TRADE.updatePreview()"></div>
         <div class="pm-preview" id="pm-preview">
           <div class="pm-pv-row"><span>Avg Price</span><strong>${(avgP * 100).toFixed(1)}¢</strong></div>
           <div class="pm-pv-row"><span>Total Cost</span><strong>$${cost.toFixed(2)}</strong></div>
