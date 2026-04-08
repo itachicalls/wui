@@ -321,6 +321,275 @@
       #webBox{height:320px}
       .d-st{grid-template-columns:1fr}
     }
+
+    /* Contract Address */
+    .ca-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.15);padding:4px 10px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--acl);cursor:pointer;transition:all .2s;max-width:220px;overflow:hidden;margin-top:6px}
+    .ca-pill:hover{background:rgba(99,102,241,.12);border-color:rgba(99,102,241,.3)}
+    .ca-label{color:var(--txm);font-family:'Inter',sans-serif;font-weight:700;font-size:.56rem;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0}
+    .ca-addr{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .ca-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ac);color:#fff;padding:8px 18px;border-radius:8px;font-size:.75rem;font-weight:600;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none}.ca-toast.show{opacity:1}
+
+    /* Social Links */
+    .socials{display:flex;align-items:center;gap:6px}
+    .so-link{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid var(--brd);color:var(--tx2);transition:all .2s;text-decoration:none}.so-link:hover{background:rgba(99,102,241,.1);border-color:var(--ac);color:var(--acl)}
+    .so-link svg{width:14px;height:14px;fill:currentColor}
+
+    /* Hero Terminal */
+    .hero{background:linear-gradient(135deg,rgba(99,102,241,.06),rgba(6,182,212,.03));border:1px solid rgba(99,102,241,.15);border-radius:var(--rl);padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(99,102,241,.08) 0%,transparent 70%);pointer-events:none}
+    .hero-lbl{font-size:.58rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px}
+    .hero-row{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+    .hero-val{font-family:'JetBrains Mono',monospace;font-size:3.5rem;font-weight:700;color:var(--wh);letter-spacing:-.03em;line-height:1}
+    .hero-dir{font-size:1.8rem;font-weight:700}.hero-dir.up{color:var(--rd)}.hero-dir.down{color:var(--gn)}.hero-dir.flat{color:var(--yl)}
+    .hero-chg{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700}.hero-chg.up{color:var(--rd)}.hero-chg.down{color:var(--gn)}
+    .hero-badge{display:inline-block;padding:4px 14px;border-radius:999px;font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-left:4px}
+    .hero-badge.high{background:rgba(34,197,94,.1);color:var(--gn);border:1px solid rgba(34,197,94,.12)}.hero-badge.medium{background:rgba(234,179,8,.1);color:var(--yl);border:1px solid rgba(234,179,8,.12)}.hero-badge.low{background:rgba(239,68,68,.1);color:var(--rd);border:1px solid rgba(239,68,68,.12)}
+    .hero-insight{font-size:.85rem;color:var(--tx);line-height:1.7;margin:16px 0 14px;padding:12px 16px;background:rgba(255,255,255,.02);border-radius:8px;border-left:3px solid var(--ac)}
+    .hero-stats{display:flex;gap:24px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:.74rem}
+    .hs-item{display:flex;align-items:center;gap:6px}
+    .hs-l{color:var(--txm);font-family:'Inter',sans-serif;font-weight:600;font-size:.6rem;text-transform:uppercase;letter-spacing:.06em}.hs-v{font-weight:700;color:var(--wh)}
+    .hero-meta{display:flex;align-items:center;gap:14px;margin-top:14px;font-size:.68rem;color:var(--txm)}
+    .hero-meta .lpill{font-size:.58rem;padding:3px 8px}
+
+    /* Command Center */
+    .cmd-center{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px}
+    .cmd-card{background:var(--bgc);border:1px solid var(--brd);border-radius:var(--rm);padding:16px 18px;overflow:hidden}
+    .cmd-title{font-size:.6rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+    .cmd-title::before{content:'';width:5px;height:5px;background:var(--ac);border-radius:50%}
+    .cmd-sig{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--brd);font-size:.78rem}
+    .cmd-sig:last-child{border-bottom:none}
+    .cmd-sig .cs-asset{color:var(--tx2);font-weight:600;width:60px;flex-shrink:0;font-size:.72rem}
+    .cmd-sig .cs-badge{font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase}
+    .cmd-sig .cs-badge.bullish{color:#22c55e;background:rgba(34,197,94,.1)}.cmd-sig .cs-badge.bearish{color:#ef4444;background:rgba(239,68,68,.1)}.cmd-sig .cs-badge.neutral{color:#eab308;background:rgba(234,179,8,.1)}
+    .cmd-sig .cs-reason{font-size:.68rem;color:var(--txm);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .cmd-alert{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--brd);font-size:.76rem}
+    .cmd-alert:last-child{border-bottom:none}
+    .cmd-adot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+    .cmd-adot.critical{background:#ef4444;animation:blk 1.5s infinite}.cmd-adot.high{background:#f97316}.cmd-adot.medium{background:#eab308}.cmd-adot.low{background:#22c55e}
+    .cmd-atxt{font-weight:600;color:var(--wh);font-size:.74rem;flex:1}.cmd-aurg{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--txm)}
+    .cmd-narr{font-size:.8rem;color:var(--tx);line-height:1.7}
+
+    /* Headline Feed */
+    .hd-feed{background:var(--bgc);border:1px solid var(--brd);border-radius:var(--rm);padding:16px 18px;margin-bottom:24px;max-height:200px;overflow-y:auto}
+    .hf-title{font-size:.6rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+    .hf-title::before{content:'';width:5px;height:5px;background:var(--cy);border-radius:50%;animation:blk 2s ease-in-out infinite}
+    .hf-item{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--brd)}.hf-item:last-child{border-bottom:none}
+    .hf-score{font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:700;width:28px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:4px;flex-shrink:0}
+    .hf-score.s-high{background:rgba(239,68,68,.1);color:#ef4444}.hf-score.s-med{background:rgba(234,179,8,.1);color:#eab308}.hf-score.s-low{background:rgba(34,197,94,.1);color:#22c55e}
+    .hf-text{font-size:.74rem;color:var(--tx);line-height:1.4;flex:1;min-width:0}
+    .hf-tag{font-size:.54rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 6px;border-radius:3px;background:rgba(99,102,241,.08);color:var(--acl);flex-shrink:0;white-space:nowrap}
+
+    @media(max-width:1024px){.cmd-center{grid-template-columns:1fr}.hero-val{font-size:2.6rem}.hero-dir{font-size:1.3rem}.hero-chg{font-size:1rem}}
+    @media(max-width:768px){.hero{padding:18px 20px}.hero-val{font-size:2rem}.hero-row{gap:10px}.hero-stats{gap:14px}.hero-insight{font-size:.78rem;padding:10px 12px}.hero-meta{flex-wrap:wrap}}
+
+    /* Intelligence Tab */
+    .intel-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+    .pulse-card{background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(6,182,212,.04));border:1px solid rgba(99,102,241,.2);border-radius:var(--rl);padding:24px;position:relative;overflow:hidden;margin-bottom:20px}
+    .pulse-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .pulse-title{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--wh)}
+    .pulse-badge{padding:4px 12px;border-radius:999px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .pulse-badge.rising{background:var(--rdb);color:var(--rd)}.pulse-badge.falling{background:var(--gnb);color:var(--gn)}.pulse-badge.stable{background:rgba(234,179,8,.1);color:var(--yl)}
+    .pulse-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .pulse-stat{text-align:center}.pulse-stat .ps-label{font-size:.62rem;color:var(--txm);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px}
+    .pulse-stat .ps-val{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:700;color:var(--wh)}.pulse-stat .ps-sub{font-size:.68rem;margin-top:2px;color:var(--txm)}
+
+    /* Alerts */
+    .alert-list{display:flex;flex-direction:column;gap:8px}
+    .alert-card{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:var(--rm);border:1px solid var(--brd);background:var(--bgc);transition:border-color .2s}.alert-card:hover{border-color:var(--brd2)}
+    .alert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+    .alert-dot.critical{background:#ef4444;box-shadow:0 0 8px rgba(239,68,68,.4);animation:blk 1.5s infinite}.alert-dot.high{background:#f97316;box-shadow:0 0 6px rgba(249,115,22,.3)}.alert-dot.medium{background:#eab308}.alert-dot.low{background:#22c55e}
+    .alert-body{flex:1;min-width:0}.alert-title{font-weight:700;font-size:.82rem;color:var(--wh);margin-bottom:2px}.alert-desc{font-size:.74rem;color:var(--tx2);line-height:1.5}
+    .alert-urgency{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:4px;flex-shrink:0}
+    .alert-urgency.critical{color:#ef4444;background:rgba(239,68,68,.1)}.alert-urgency.high{color:#f97316;background:rgba(249,115,22,.1)}.alert-urgency.medium{color:#eab308;background:rgba(234,179,8,.1)}.alert-urgency.low{color:#22c55e;background:rgba(34,197,94,.1)}
+
+    /* Trading Signals */
+    .trade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .trade-card{background:var(--bgc);border:1px solid var(--brd);border-radius:var(--rm);padding:16px;text-align:center}
+    .trade-card .tc-market{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txm);margin-bottom:8px}
+    .trade-card .tc-signal{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;margin-bottom:6px}
+    .trade-card .tc-signal.bullish{color:var(--gn)}.trade-card .tc-signal.bearish{color:var(--rd)}.trade-card .tc-signal.neutral{color:var(--yl)}
+    .trade-card .tc-reason{font-size:.72rem;color:var(--tx2);line-height:1.5}
+
+    /* Narrative */
+    .narr-block{background:var(--bgc);border:1px solid var(--brd);border-radius:var(--rl);padding:22px}
+    .narr-q{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:700;color:var(--acl);margin-bottom:10px}
+    .narr-text{font-size:.85rem;color:var(--tx);line-height:1.8}
+
+    /* Social Post Preview */
+    .social-preview{background:var(--bgc);border:1px solid var(--brd);border-radius:var(--rl);padding:22px;position:relative}
+    .sp-platform{display:flex;align-items:center;gap:6px;margin-bottom:12px;font-size:.68rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.06em}
+    .sp-body{font-size:.88rem;color:var(--wh);line-height:1.8;white-space:pre-line;font-weight:500}
+    .sp-copy{position:absolute;top:14px;right:14px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:var(--acl);border-radius:6px;padding:5px 10px;font-size:.66rem;font-weight:600;cursor:pointer;transition:all .2s}.sp-copy:hover{background:rgba(99,102,241,.2)}
+
+    /* Correlations */
+    .corr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .corr-item{background:var(--bgc);border:1px solid var(--brd);border-radius:var(--rm);padding:14px 16px}
+    .corr-pair{font-size:.72rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+    .corr-val{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;margin-bottom:4px}
+    .corr-insight{font-size:.74rem;color:var(--tx2);line-height:1.5}
+
+    /* Scenario */
+    .scn-select{width:100%;background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rs);color:var(--wh);padding:10px 14px;font-family:'Inter',sans-serif;font-size:.82rem;cursor:pointer;margin-bottom:14px;appearance:none;outline:none}.scn-select:focus{border-color:var(--ac)}
+    .scn-select option{background:var(--bg2);color:var(--wh)}
+    .scn-result{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+    .scn-card{background:var(--bgc);border:1px solid var(--brd);border-radius:var(--rm);padding:14px}
+    .scn-card .scn-label{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txm);margin-bottom:6px}
+    .scn-card .scn-val{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--wh);margin-bottom:4px}
+    .scn-card .scn-desc{font-size:.72rem;color:var(--tx2);line-height:1.5}
+
+    /* Country Intel */
+    .ci-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .ci-list{display:flex;flex-direction:column;gap:6px}
+    .ci-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bgc);border:1px solid var(--brd);border-radius:var(--rs);transition:border-color .15s}.ci-item:hover{border-color:var(--brd2)}
+    .ci-rank{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;color:var(--txm);width:20px;flex-shrink:0}
+    .ci-name{font-weight:600;font-size:.8rem;color:var(--wh);width:90px;flex-shrink:0}
+    .ci-change{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;padding:2px 7px;border-radius:4px;flex-shrink:0}
+    .ci-reason{font-size:.68rem;color:var(--tx2);flex:1;min-width:0;line-height:1.4}
+
+    /* ═══ Prediction Markets ═══ */
+    .pm-header{display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--brd);margin-bottom:16px}
+    .pm-title{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:var(--wh)}
+    .pm-title-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+    .pm-disclaimer{font-size:.68rem;font-weight:600;color:var(--tx2);background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.22);padding:5px 12px;border-radius:999px;line-height:1.35;max-width:100%}
+    .pm-sub{font-size:.75rem;color:var(--tx2);margin-top:6px}
+    .pm-bal-box{text-align:right}
+    .pm-bal-label{font-size:.55rem;color:var(--txm);text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+    .pm-bal-val{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--wh);letter-spacing:-.02em}
+    .pm-bal-sub{font-size:.68rem;color:var(--tx2);margin-top:1px;font-family:'JetBrains Mono',monospace}
+    .pm-filters{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+    .pm-fil{background:rgba(255,255,255,.02);border:1px solid var(--brd);color:var(--txm);padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .15s}
+    .pm-fil:hover{border-color:var(--brd2);color:var(--tx)}
+    .pm-fil.on{background:rgba(99,102,241,.07);border-color:rgba(99,102,241,.25);color:var(--acl)}
+    .pm-main{display:grid;grid-template-columns:360px 1fr;gap:16px;min-height:480px}
+    .pm-markets{overflow-y:auto;max-height:750px;padding-right:4px}
+    .pm-markets::-webkit-scrollbar{width:4px}.pm-markets::-webkit-scrollbar-thumb{background:rgba(255,255,255,.06);border-radius:2px}
+    .pm-card{background:rgba(255,255,255,.015);border:1px solid var(--brd);border-radius:12px;padding:16px 18px;cursor:pointer;transition:all .18s;margin-bottom:8px}
+    .pm-card:hover{border-color:var(--brd2);background:rgba(255,255,255,.03);transform:translateY(-1px)}
+    .pm-card.pm-card-sel{border-color:var(--ac);background:rgba(99,102,241,.04);box-shadow:0 0 24px rgba(99,102,241,.06)}
+    .pm-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .pm-cat-pill{font-size:.52rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--acl);background:rgba(99,102,241,.08);padding:3px 8px;border-radius:4px}
+    .pm-card-exp{font-size:.62rem;color:var(--txm);font-weight:600}
+    .pm-card-q{font-size:.85rem;font-weight:600;color:var(--wh);margin-bottom:10px;line-height:1.35}
+    .pm-card-bar{height:6px;background:rgba(239,68,68,.12);border-radius:3px;overflow:hidden;margin-bottom:8px}
+    .pm-bar-fill{height:100%;background:linear-gradient(90deg,#22c55e,rgba(34,197,94,.4));border-radius:3px;transition:width .4s ease}
+    .pm-card-prices{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700}
+    .pm-c-yes{color:#22c55e}.pm-c-no{color:#ef4444}
+    .pm-card-foot{display:flex;justify-content:space-between;font-size:.56rem;color:var(--txm);margin-top:6px;font-weight:600;letter-spacing:.02em}
+    .pm-detail-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:400px;color:var(--txm);font-size:.82rem;gap:12px}
+    .pm-det-card{background:var(--bgc);border:1px solid var(--brd);border-radius:14px;padding:24px 28px}
+    .pm-det-q{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:var(--wh);line-height:1.35;margin-bottom:14px}
+    .pm-det-meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .pm-det-chip{background:rgba(255,255,255,.025);border:1px solid var(--brd);border-radius:8px;padding:6px 12px;font-size:.72rem;color:var(--tx2);display:flex;align-items:center;gap:6px}
+    .pm-det-chip a{color:var(--acl);text-decoration:none}
+    .pm-det-label{font-size:.55rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.06em}
+    .pm-prob-wrap{margin-bottom:18px}
+    .pm-prob-bar{display:flex;height:44px;border-radius:10px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:700}
+    .pm-pbar-yes{background:rgba(34,197,94,.15);color:#22c55e;display:flex;align-items:center;justify-content:center;transition:width .4s ease;min-width:50px;border-right:2px solid var(--bg)}
+    .pm-pbar-no{background:rgba(239,68,68,.1);color:#ef4444;display:flex;align-items:center;justify-content:center;flex:1;min-width:50px}
+    .pm-chart-box{border:1px solid var(--brd);border-radius:10px;overflow:hidden;margin-bottom:18px;background:rgba(0,0,0,.15)}
+    .pm-order-box{border-top:1px solid var(--brd);padding-top:18px}
+    .pm-sides{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+    .pm-side{padding:12px;border:1px solid var(--brd);border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .18s;background:none;color:var(--txm)}
+    .pm-s-yes:hover,.pm-s-yes.on{background:rgba(34,197,94,.1);color:#22c55e;border-color:rgba(34,197,94,.3)}
+    .pm-s-no:hover,.pm-s-no.on{background:rgba(239,68,68,.1);color:#ef4444;border-color:rgba(239,68,68,.3)}
+    .pm-field{margin-bottom:14px}
+    .pm-lbl{display:block;font-size:.58rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+    .pm-input{width:100%;background:rgba(0,0,0,.2);border:1px solid var(--brd);border-radius:10px;color:var(--wh);padding:11px 14px;font-family:'JetBrains Mono',monospace;font-size:.9rem;outline:none;transition:border-color .15s;box-sizing:border-box}
+    .pm-input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(99,102,241,.08)}
+    .pm-preview{padding:12px 0}
+    .pm-pv-row{display:flex;justify-content:space-between;padding:5px 0;font-size:.78rem;color:var(--tx2)}
+    .pm-pv-row strong{color:var(--wh)}
+    .pm-pv-profit,.pm-pv-profit strong{color:#22c55e!important}
+    .pm-pv-loss,.pm-pv-loss strong{color:#ef4444!important}
+    .pm-exec{width:100%;padding:14px;border:none;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;transition:all .2s}
+    .pm-exec-yes{background:rgba(34,197,94,.15);color:#22c55e;border:1px solid rgba(34,197,94,.2)}
+    .pm-exec-yes:hover{background:rgba(34,197,94,.25);box-shadow:0 0 24px rgba(34,197,94,.12)}
+    .pm-exec-no{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.2)}
+    .pm-exec-no:hover{background:rgba(239,68,68,.25);box-shadow:0 0 24px rgba(239,68,68,.12)}
+    .pm-info-box{border-top:1px solid var(--brd);margin-top:16px;padding-top:12px}
+    .pm-info-r{display:flex;justify-content:space-between;padding:4px 0;font-size:.72rem;color:var(--tx2)}
+    .pm-pos-card{background:var(--bgc);border:1px solid var(--brd);border-radius:12px;padding:16px 18px;margin-bottom:8px}
+    .pm-pos-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+    .pm-pos-badge{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;padding:3px 10px;border-radius:5px;text-transform:uppercase;letter-spacing:.04em}
+    .pm-badge-yes{color:#22c55e;background:rgba(34,197,94,.1)}
+    .pm-badge-no{color:#ef4444;background:rgba(239,68,68,.1)}
+    .pm-pos-name{font-weight:600;font-size:.85rem;color:var(--wh);flex:1}
+    .pm-pos-shares{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--txm)}
+    .pm-pos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:.75rem;color:var(--tx2);margin-bottom:10px}
+    .pm-pos-lbl{font-size:.52rem;color:var(--txm);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px;font-weight:600}
+    .pm-sell-btn{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.12);color:#ef4444;padding:8px 16px;border-radius:8px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .15s;width:100%}
+    .pm-sell-btn:hover{background:rgba(239,68,68,.12)}
+    .pm-empty-sec{padding:28px;text-align:center;color:var(--txm);font-size:.78rem}
+    .pm-empty-list{padding:48px 20px;text-align:center;color:var(--txm);font-size:.82rem}
+    .pm-hist-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--brd);font-size:.78rem;flex-wrap:wrap}
+    .pm-hist-row:last-child{border-bottom:none}
+    .pm-hist-title{font-weight:600;color:var(--wh);flex:1}
+    .pm-hist-detail{font-size:.66rem;color:var(--txm)}
+    .pm-hist-w{border-left:3px solid rgba(34,197,94,.25)}.pm-hist-l{border-left:3px solid rgba(239,68,68,.25)}
+    .pm-act-btn{background:rgba(255,255,255,.03);border:1px solid var(--brd);color:var(--txm);padding:5px 12px;border-radius:6px;font-size:.64rem;font-weight:600;cursor:pointer;transition:all .15s}
+    .pm-act-btn:hover{color:var(--tx);border-color:var(--brd2)}
+    @media(max-width:900px){.pm-main{grid-template-columns:1fr}.pm-markets{max-height:400px}}
+    @media(max-width:600px){.pm-pos-grid{grid-template-columns:repeat(2,1fr)}.pm-header{flex-direction:column;gap:12px;align-items:flex-start}.pm-bal-box{text-align:left}.pm-det-meta-row{flex-direction:column}.pm-hist-row{flex-direction:column;align-items:flex-start;gap:4px}}
+
+    /* ═══ Token Tab ═══ */
+    .tk-hero{display:flex;justify-content:space-between;align-items:flex-start;padding:28px 32px;background:linear-gradient(135deg,rgba(99,102,241,.05),rgba(34,197,94,.03));border:1px solid rgba(99,102,241,.1);border-radius:16px;margin-bottom:16px;gap:20px;flex-wrap:wrap}
+    .tk-hero-left{flex:1;min-width:280px}
+    .tk-name{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:800;color:var(--wh);letter-spacing:-.02em;line-height:1}
+    .tk-name span{color:var(--acl);font-size:1rem;font-weight:600;margin-left:8px;vertical-align:middle}
+    .tk-desc{font-size:.85rem;color:var(--tx2);margin-top:6px;margin-bottom:18px}
+    .tk-ca-row{display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+    .tk-ca-label{font-size:.52rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.1em}
+    .tk-ca-val{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--acl);background:rgba(99,102,241,.06);padding:5px 12px;border-radius:8px;word-break:break-all;border:1px solid rgba(99,102,241,.1)}
+    .tk-ca-copy{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.18);color:var(--acl);padding:5px 12px;border-radius:8px;font-size:.64rem;font-weight:700;cursor:pointer;transition:all .15s}
+    .tk-ca-copy:hover{background:rgba(99,102,241,.2)}
+    .tk-socials{display:flex;gap:10px;flex-wrap:wrap}
+    .tk-social-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;font-size:.82rem;font-weight:700;text-decoration:none;transition:all .2s;font-family:'Space Grotesk',sans-serif}
+    .tk-social-x{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--wh)}
+    .tk-social-x:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);transform:translateY(-1px)}
+    .tk-social-tg{background:rgba(0,136,204,.08);border:1px solid rgba(0,136,204,.15);color:#0088cc}
+    .tk-social-tg:hover{background:rgba(0,136,204,.15);transform:translateY(-1px)}
+    .tk-social-pf{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.12);color:#22c55e}
+    .tk-social-pf:hover{background:rgba(34,197,94,.12);transform:translateY(-1px)}
+    .tk-wallet-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .18s;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:var(--acl);white-space:nowrap}
+    .tk-wallet-btn:hover{background:rgba(99,102,241,.15);border-color:rgba(99,102,241,.35)}
+    .tk-wallet-btn.tk-connected{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.2);color:#22c55e}
+    .tk-wdot{width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;box-shadow:0 0 8px rgba(34,197,94,.5)}
+    .tk-main{display:grid;grid-template-columns:1fr 400px;gap:16px;margin-bottom:16px}
+    .tk-chart-wrap{background:var(--bgc);border:1px solid var(--brd);border-radius:14px;overflow:hidden;min-height:520px}
+    .tk-chart-wrap iframe{width:100%;height:520px;border:none;display:block}
+    .tk-chart-placeholder{display:flex;align-items:center;justify-content:center;height:520px;color:var(--txm);font-size:.82rem}
+    .tk-swap-col{display:flex;flex-direction:column;gap:12px}
+    .tk-swap-card{background:var(--bgc);border:1px solid var(--brd);border-radius:14px;padding:20px;flex:1}
+    .tk-swap-title{font-family:'Space Grotesk',sans-serif;font-size:.92rem;font-weight:700;color:var(--wh);margin-bottom:14px}
+    #jupiter-terminal{min-height:60px;border-radius:10px;overflow:hidden}
+    .tk-trade-links{display:flex;flex-direction:column;gap:8px}
+    .tk-trade-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .18s;text-align:center}
+    .tk-trade-primary{background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(99,102,241,.06));border:1px solid rgba(99,102,241,.2);color:var(--acl)}
+    .tk-trade-primary:hover{background:rgba(99,102,241,.2);border-color:rgba(99,102,241,.35);transform:translateY(-1px);box-shadow:0 4px 20px rgba(99,102,241,.12)}
+    .tk-trade-sec{background:rgba(255,255,255,.02);border:1px solid var(--brd);color:var(--tx)}
+    .tk-trade-sec:hover{background:rgba(255,255,255,.05);border-color:var(--brd2);transform:translateY(-1px)}
+    .tk-quick{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:20px 0}
+    .tk-quick a{font-size:.72rem;font-weight:600;color:var(--txm);text-decoration:none;padding:8px 16px;border:1px solid var(--brd);border-radius:8px;transition:all .15s;background:rgba(255,255,255,.015)}
+    .tk-quick a:hover{color:var(--acl);border-color:rgba(99,102,241,.2);background:rgba(99,102,241,.04)}
+    .tk-info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px}
+    .tk-info-card{background:var(--bgc);border:1px solid var(--brd);border-radius:10px;padding:14px 16px}
+    .tk-info-label{font-size:.52rem;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+    .tk-info-val{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700;color:var(--wh)}
+    @media(max-width:900px){.tk-main{grid-template-columns:1fr}.tk-chart-wrap iframe,.tk-chart-wrap{min-height:400px;height:400px}.tk-hero{flex-direction:column}}
+    @media(max-width:600px){.tk-socials{flex-direction:column}.tk-ca-row{flex-direction:column;align-items:flex-start}}
+
+    @media(max-width:1024px){
+      .intel-grid,.ci-grid{grid-template-columns:1fr}
+      .pulse-stats{grid-template-columns:1fr 1fr}
+      .trade-grid,.corr-grid,.scn-result{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      .pulse-stats{grid-template-columns:1fr 1fr}
+      .pulse-stat .ps-val{font-size:1.2rem}
+      .trade-grid,.corr-grid,.scn-result{grid-template-columns:1fr}
+      .ci-item{flex-wrap:wrap;gap:6px}
+      .ci-reason{width:100%;flex-basis:100%}
+    }
   </style>
 </head>
 <body>
@@ -334,8 +603,20 @@
       <div>
         <h1>World Uncertainty Index</h1>
         <p class="sub">Real-time data from <a href="https://fred.stlouisfed.org/tags/series?t=wui" target="_blank" rel="noopener">FRED</a> &mdash; Ahir, Bloom &amp; Furceri (<a href="https://www.imf.org/en/Publications/WP/Issues/2022/03/04/World-Uncertainty-Index-512625" target="_blank" rel="noopener">IMF 2022</a>)</p>
+        <div class="ca-pill" id="caPill" title="Click to copy contract address">
+          <span class="ca-label">CA</span>
+          <span class="ca-addr">FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump</span>
+        </div>
       </div>
       <div class="hdr-r">
+        <div class="socials">
+          <a href="https://x.com/Uncertaintyindx" target="_blank" rel="noopener" class="so-link" title="Follow on X">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://t.me/uncertaintyindex" target="_blank" rel="noopener" class="so-link" title="Join Telegram">
+            <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+        </div>
         <span class="clk" id="clock"></span>
         <span class="fresh" id="freshness"></span>
         <span class="lpill"><span class="ldot"></span> Live</span>
@@ -347,13 +628,63 @@
       <button class="tab-btn on" data-tab="dashboard">Dashboard</button>
       <button class="tab-btn" data-tab="worldmap">World Map</button>
       <button class="tab-btn" data-tab="web">Uncertainty Web</button>
+      <button class="tab-btn" data-tab="intel">Intelligence</button>
+      <button class="tab-btn" data-tab="trade">Trade</button>
+      <button class="tab-btn" data-tab="token">Token</button>
       <button class="tab-btn" data-tab="sources">Sources</button>
     </nav>
 
     <!-- ═══ TAB: Dashboard ═══ -->
     <div class="tab-pane active" id="pane-dashboard">
 
-      <!-- Stats -->
+      <!-- HERO -->
+      <div class="hero" id="heroPanel">
+        <div class="hero-lbl">World Uncertainty Index &mdash; Live Intelligence</div>
+        <div class="hero-row">
+          <span class="hero-val" id="h-val">&mdash;</span>
+          <span class="hero-dir flat" id="h-dir">&rarr;</span>
+          <span class="hero-chg" id="h-chg">&mdash;</span>
+          <span class="hero-badge" id="h-conf">&mdash;</span>
+        </div>
+        <div class="hero-insight" id="h-insight">Initializing intelligence engine&hellip;</div>
+        <div class="hero-stats">
+          <span class="hs-item"><span class="hs-l">QoQ</span><span class="hs-v" id="h-qoq">&mdash;</span></span>
+          <span class="hs-item"><span class="hs-l">YoY</span><span class="hs-v" id="h-yoy">&mdash;</span></span>
+          <span class="hs-item"><span class="hs-l">ATH</span><span class="hs-v" id="h-ath">&mdash;</span></span>
+          <span class="hs-item"><span class="hs-l">Mean</span><span class="hs-v" id="h-avg">&mdash;</span></span>
+          <span class="hs-item"><span class="hs-l">&sigma; 5Y</span><span class="hs-v" id="h-vol">&mdash;</span></span>
+          <span class="hs-item"><span class="hs-l">Momentum</span><span class="hs-v" id="h-mom">&mdash;</span></span>
+        </div>
+        <div class="hero-meta">
+          <span class="lpill"><span class="ldot"></span> Live</span>
+          <span id="h-fresh">&mdash;</span>
+          <span class="clk" id="h-clock"></span>
+        </div>
+      </div>
+
+      <!-- COMMAND CENTER -->
+      <div class="cmd-center" id="cmdCenter">
+        <div class="cmd-card" id="cmd-trade">
+          <div class="cmd-title">Trading Signals</div>
+          <div id="cmd-trade-body" style="color:var(--txm);font-size:.74rem">Waiting for data&hellip;</div>
+        </div>
+        <div class="cmd-card" id="cmd-alerts">
+          <div class="cmd-title">Active Alerts</div>
+          <div id="cmd-alerts-body" style="color:var(--txm);font-size:.74rem">Waiting for data&hellip;</div>
+        </div>
+        <div class="cmd-card" id="cmd-brief">
+          <div class="cmd-title">Why It&rsquo;s Moving</div>
+          <div id="cmd-brief-body" class="cmd-narr" style="color:var(--txm)">Waiting for data&hellip;</div>
+        </div>
+      </div>
+
+      <!-- HEADLINE FEED -->
+      <div class="hd-feed" id="hdFeed">
+        <div class="hf-title">Live Signal Feed</div>
+        <div id="hf-body" style="color:var(--txm);font-size:.74rem;padding:8px 0">Waiting for data&hellip;</div>
+      </div>
+
+      <!-- Stats (secondary) -->
       <div class="stats" id="stats">
         <div class="stat pri"><div class="stat-l">Global Index</div><div class="stat-v" id="s-cur">&mdash;</div><div class="stat-s flat" id="s-cur-s">Loading...</div><div class="stat-sp"><canvas id="s-sp"></canvas></div></div>
         <div class="stat"><div class="stat-l">Quarter / Quarter</div><div class="stat-v" id="s-qoq">&mdash;</div><div class="stat-s flat" id="s-qoq-s"></div></div>
@@ -424,6 +755,11 @@
 
       <footer>
         <div>All data from <a href="https://fred.stlouisfed.org" target="_blank">FRED</a> &bull; <a href="https://www.imf.org/en/Publications/WP/Issues/2022/03/04/World-Uncertainty-Index-512625" target="_blank">IMF WP/22/001</a> &bull; Zero synthetic data</div>
+        <div style="margin-top:8px">
+          <a href="https://x.com/Uncertaintyindx" target="_blank">X (Twitter)</a> &bull;
+          <a href="https://t.me/uncertaintyindex" target="_blank">Telegram</a> &bull;
+          <span style="font-family:'JetBrains Mono',monospace;font-size:.64rem">CA: FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump</span>
+        </div>
       </footer>
     </div>
 
@@ -486,6 +822,205 @@
       </div>
     </div>
 
+    <!-- ═══ TAB: Intelligence ═══ -->
+    <div class="tab-pane" id="pane-intel">
+      <!-- WUI Pulse -->
+      <div class="section">
+        <div class="pulse-card">
+          <div class="pulse-hdr">
+            <div class="pulse-title">WUI Intelligence Pulse</div>
+            <span class="pulse-badge" id="i-dir">&mdash;</span>
+          </div>
+          <div class="pulse-stats">
+            <div class="pulse-stat"><div class="ps-label">WUI Estimate</div><div class="ps-val" id="i-val">&mdash;</div><div class="ps-sub" id="i-per"></div></div>
+            <div class="pulse-stat"><div class="ps-label">Direction</div><div class="ps-val" id="i-dirv">&mdash;</div></div>
+            <div class="pulse-stat"><div class="ps-label">Confidence</div><div class="ps-val" id="i-conf">&mdash;</div></div>
+            <div class="pulse-stat"><div class="ps-label">QoQ Change</div><div class="ps-val" id="i-qoq">&mdash;</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alerts -->
+      <div class="section">
+        <div class="sh"><div><div class="section-title">Active Alerts</div><div class="ss">Threshold-based monitoring — spikes, divergences, regime shifts</div></div></div>
+        <div class="alert-list" id="i-alerts"><div style="color:var(--txm);font-size:.78rem;padding:20px;text-align:center">Waiting for data&hellip;</div></div>
+      </div>
+
+      <!-- Trading Signals + Correlations -->
+      <div class="intel-grid">
+        <div class="section">
+          <div class="sh"><div><div class="section-title">Trading Signals</div><div class="ss">WUI-derived market implications</div></div></div>
+          <div class="trade-grid" id="i-trades"></div>
+        </div>
+        <div class="section">
+          <div class="sh"><div><div class="section-title">Correlation Analysis</div><div class="ss">WUI vs supplementary indicators</div></div></div>
+          <div class="corr-grid" id="i-corrs"></div>
+        </div>
+      </div>
+
+      <!-- Narrative + Social -->
+      <div class="intel-grid">
+        <div class="section">
+          <div class="sh"><div><div class="section-title">Intelligence Brief</div><div class="ss">Why is uncertainty moving?</div></div></div>
+          <div class="narr-block" id="i-narr"><div class="narr-q">Generating analysis&hellip;</div></div>
+        </div>
+        <div class="section">
+          <div class="sh"><div><div class="section-title">Social Output</div><div class="ss">Ready-to-post X content</div></div></div>
+          <div class="social-preview" id="i-social"><div class="sp-platform">&#120143; Post</div><div class="sp-body" style="color:var(--txm)">Generating&hellip;</div></div>
+        </div>
+      </div>
+
+      <!-- Country Intel -->
+      <div class="section">
+        <div class="sh"><div><div class="section-title">Country Intelligence</div><div class="ss">Top movers with one-line reasoning</div></div></div>
+        <div class="ci-grid" id="i-countries"></div>
+      </div>
+
+      <!-- Event Impact -->
+      <div class="section">
+        <div class="sh"><div><div class="section-title">Event Impact Detection</div><div class="ss">Major macro events &amp; measured WUI impact</div></div></div>
+        <div class="card" id="i-events" style="padding:6px 18px"></div>
+      </div>
+
+      <!-- Scenario Simulation -->
+      <div class="section">
+        <div class="sh"><div><div class="section-title">Scenario Simulation</div><div class="ss">Hypothetical analysis — select a scenario</div></div></div>
+        <div class="card">
+          <select class="scn-select" id="i-scn-sel">
+            <option value="">Select a scenario&hellip;</option>
+            <option value="oil_120">Oil hits $120/barrel</option>
+            <option value="china_taiwan">China-Taiwan escalation</option>
+            <option value="fed_surprise">Fed emergency rate cut</option>
+            <option value="recession">Global recession signal</option>
+            <option value="pandemic">Pandemic resurgence</option>
+            <option value="trade_war">Full trade war escalation</option>
+          </select>
+          <div class="scn-result" id="i-scn-result"><div style="color:var(--txm);font-size:.78rem;padding:16px;text-align:center">Select a scenario to simulate</div></div>
+        </div>
+      </div>
+
+      <footer>
+        <div>All data from <a href="https://fred.stlouisfed.org" target="_blank">FRED</a> &bull; <a href="https://www.imf.org/en/Publications/WP/Issues/2022/03/04/World-Uncertainty-Index-512625" target="_blank">IMF WP/22/001</a> &bull; Zero synthetic data</div>
+        <div style="margin-top:8px">
+          <a href="https://x.com/Uncertaintyindx" target="_blank">X (Twitter)</a> &bull;
+          <a href="https://t.me/uncertaintyindex" target="_blank">Telegram</a> &bull;
+          <span style="font-family:'JetBrains Mono',monospace;font-size:.64rem">CA: FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ═══ TAB: Trade ═══ -->
+    <div class="tab-pane" id="pane-trade">
+      <div class="pm-header">
+        <div>
+          <div class="pm-title-row">
+            <div class="pm-title">Prediction Markets</div>
+            <span class="pm-disclaimer">Trading simulated, live trading coming soon</span>
+          </div>
+          <div class="pm-sub">Trade on real uncertainty outcomes. All settlements from FRED data. No synthetic pricing.</div>
+        </div>
+        <div class="pm-bal-box">
+          <div class="pm-bal-label">Portfolio Value</div>
+          <div class="pm-bal-val" id="pm-value">$1,000.00</div>
+          <div class="pm-bal-sub">Cash: <span id="pm-balance">$1,000.00</span></div>
+        </div>
+      </div>
+
+      <div class="pm-filters">
+        <button class="pm-fil on" data-cat="all" onclick="TRADE.setFilter('all')">All Markets</button>
+        <button class="pm-fil" data-cat="daily" onclick="TRADE.setFilter('daily')">Daily</button>
+        <button class="pm-fil" data-cat="weekly" onclick="TRADE.setFilter('weekly')">Weekly</button>
+        <button class="pm-fil" data-cat="monthly" onclick="TRADE.setFilter('monthly')">Monthly</button>
+        <button class="pm-fil" data-cat="quarterly" onclick="TRADE.setFilter('quarterly')">Quarterly</button>
+      </div>
+
+      <div class="pm-main">
+        <div class="pm-markets" id="pm-markets"></div>
+        <div class="pm-detail" id="pm-detail">
+          <div class="pm-detail-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(99,102,241,.3)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/></svg>
+            <div>Select a market to start trading</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="margin-top:20px">
+        <div class="sh"><div><div class="section-title">Your Positions</div><div class="ss" id="pm-pos-count">0 active</div></div></div>
+        <div id="pm-positions"></div>
+      </div>
+
+      <div class="section">
+        <div class="sh"><div><div class="section-title">Settlement History</div><div class="ss" id="pm-hist-count">0 settled</div></div>
+          <div><button class="pm-act-btn" onclick="TRADE.reset()">Reset Account</button></div>
+        </div>
+        <div id="pm-history"></div>
+      </div>
+
+      <div style="text-align:center;padding:20px 0;font-size:.68rem;color:var(--txm)">
+        All settlements based on official <a href="https://fred.stlouisfed.org" target="_blank" style="color:var(--acl)">FRED</a> data. Prices determined by LMSR automated market maker. No synthetic data.
+      </div>
+    </div>
+
+    <!-- ═══ TAB: Token ═══ -->
+    <div class="tab-pane" id="pane-token">
+      <div class="tk-hero">
+        <div class="tk-hero-left">
+          <div class="tk-name">$WUI <span>Solana SPL</span></div>
+          <div class="tk-desc">World Uncertainty Index &mdash; the token powering the first prediction market for global uncertainty.</div>
+          <div class="tk-ca-row">
+            <span class="tk-ca-label">Contract</span>
+            <code class="tk-ca-val">FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump</code>
+            <button class="tk-ca-copy" onclick="TOKEN.copyCA()">Copy</button>
+          </div>
+          <div class="tk-socials">
+            <a href="https://x.com/Uncertaintyindx" target="_blank" class="tk-social-btn tk-social-x">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/></svg>
+              Follow on X
+            </a>
+            <a href="https://t.me/uncertaintyindex" target="_blank" class="tk-social-btn tk-social-tg">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" fill="currentColor"/></svg>
+              Join Telegram
+            </a>
+            <a href="https://pump.fun/coin/FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump" target="_blank" class="tk-social-btn tk-social-pf">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              pump.fun
+            </a>
+          </div>
+        </div>
+        <div class="tk-hero-right">
+          <button class="tk-wallet-btn" id="tk-wallet-btn" onclick="TOKEN.handleWalletClick()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M16 12h.01"/><path d="M2 10h20"/></svg>
+            Connect Wallet
+          </button>
+        </div>
+      </div>
+
+      <div class="tk-main">
+        <div class="tk-chart-wrap">
+          <iframe id="tk-chart" title="$WUI Chart" allow="clipboard-write" loading="lazy"></iframe>
+        </div>
+        <div class="tk-swap-col">
+          <div class="tk-swap-card">
+            <div class="tk-swap-title">Swap</div>
+            <div id="jupiter-terminal"></div>
+            <div class="tk-trade-links" id="tk-trade-links">
+              <a href="https://jup.ag/swap/SOL-FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump" target="_blank" class="tk-trade-btn tk-trade-primary">Trade on Jupiter</a>
+              <a href="https://pump.fun/coin/FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump" target="_blank" class="tk-trade-btn tk-trade-sec">Trade on pump.fun</a>
+              <a href="https://raydium.io/swap/?outputMint=FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump" target="_blank" class="tk-trade-btn tk-trade-sec">Trade on Raydium</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tk-quick">
+        <a href="https://dexscreener.com/solana/FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump" target="_blank">DexScreener</a>
+        <a href="https://birdeye.so/token/FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump?chain=solana" target="_blank">Birdeye</a>
+        <a href="https://pump.fun/coin/FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump" target="_blank">pump.fun</a>
+        <a href="https://solscan.io/token/FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump" target="_blank">Solscan</a>
+        <a href="https://jup.ag/swap/SOL-FfPryhuC6Bahn6agpLe2X1gaibsPpZbR1gn49KW7pump" target="_blank">Jupiter</a>
+      </div>
+    </div>
+
     <!-- ═══ TAB: Sources ═══ -->
     <div class="tab-pane" id="pane-sources">
       <div class="section">
@@ -497,6 +1032,10 @@
     <!-- Detail Overlay -->
     <div class="ov" id="detOv"><div class="pnl" id="detPnl"><button class="pnl-x" id="detX">&times;</button><div id="detB"></div></div></div>
   </div>
+  <div class="ca-toast" id="caToast">Contract address copied!</div>
   <script src="app.js"></script>
+  <script src="intel.js"></script>
+  <script src="trade.js"></script>
+  <script src="token.js"></script>
 </body>
 </html>

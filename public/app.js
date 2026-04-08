@@ -153,7 +153,7 @@ function mkRt(id,data,color,liveId){const el=document.getElementById(id);if(!el|
 function renderRt(){const epuD=filt(rtData.epu_us_daily||[],rtRange),emvD=filt(rtData.emv_daily||[],rtRange),epuM=filt(rtData.epu_us_monthly||[],rtRange==='0.25'?'1':rtRange==='0.5'?'2':rtRange);if(!epuCh){const r=mkRt('epuCh',epuD,'#6366f1','epuLv');epuCh=r.c;epuSr=r.s}if(epuSr&&epuD.length){epuSr.setData(epuD.map(d=>({time:d.date,value:d.value})));epuCh.timeScale().fitContent();const l=epuD[epuD.length-1];if(l)document.getElementById('epuLv').textContent=l.value.toFixed(1)}if(!emvCh){const r=mkRt('emvCh',emvD,'#06b6d4','emvLv');emvCh=r.c;emvSr=r.s}if(emvSr&&emvD.length){emvSr.setData(emvD.map(d=>({time:d.date,value:d.value})));emvCh.timeScale().fitContent();const l=emvD[emvD.length-1];if(l)document.getElementById('emvLv').textContent=l.value.toFixed(1)}if(!epuMCh){const r=mkRt('epuMCh',epuM,'#8b5cf6','epuMLv');epuMCh=r.c;epuMSr=r.s}if(epuMSr&&epuM.length){epuMSr.setData(epuM.map(d=>({time:d.date,value:d.value})));epuMCh.timeScale().fitContent();const l=epuM[epuM.length-1];if(l)document.getElementById('epuMLv').textContent=l.value.toFixed(1)}}
 
 // ═══ TAB SYSTEM ═══
-function initTabs(){document.querySelectorAll('#tabBar .tab-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#tabBar .tab-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('pane-'+btn.dataset.tab).classList.add('active');if(btn.dataset.tab==='worldmap'&&!mapRendered){try{initMap()}catch(e){console.warn('Map error:',e)}}if(btn.dataset.tab==='web'&&!webRendered){initWeb().catch(e=>console.warn('Web error:',e))}if(btn.dataset.tab==='sources'){try{renderSources()}catch(e){console.warn('Sources error:',e)}}})})}
+function initTabs(){document.querySelectorAll('#tabBar .tab-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#tabBar .tab-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById('pane-'+btn.dataset.tab).classList.add('active');if(btn.dataset.tab==='worldmap'&&!mapRendered){try{initMap()}catch(e){console.warn('Map error:',e)}}if(btn.dataset.tab==='web'&&!webRendered){initWeb().catch(e=>console.warn('Web error:',e))}if(btn.dataset.tab==='sources'){try{renderSources()}catch(e){console.warn('Sources error:',e)}}if(btn.dataset.tab==='intel'&&typeof INTEL!=='undefined'&&!INTEL.rendered&&gData.length){try{INTEL.run(gData,rtData,cData,regData)}catch(e){console.warn('Intel error:',e)}}if(btn.dataset.tab==='trade'&&typeof TRADE!=='undefined'&&gData.length){try{TRADE.refresh()}catch(e){console.warn('Trade error:',e)}}if(btn.dataset.tab==='token'&&typeof TOKEN!=='undefined'){try{TOKEN.init()}catch(e){console.warn('Token error:',e)}}})})}
 
 // ═══ WORLD MAP (D3 Orthographic Globe) ═══
 async function initMap(){
@@ -328,11 +328,14 @@ async function init(){
   try{initTabs()}catch(_){}
   try{renderTimeline()}catch(_){}
   try{initReveal()}catch(_){}
+  try{if(typeof INTEL!=='undefined')INTEL.initContractAddress()}catch(_){}
   try{
     const[g,regs,countries,rt]=await Promise.all([api('global_simple'),apiMulti([...Object.keys(REGIONS),'advanced','emerging']),apiMulti(Object.keys(COUNTRIES)),apiMulti(['epu_us_daily','epu_us_monthly','emv_daily'])]);
     gData=g;regData=regs;cData=countries;rtData=rt;
     safe(()=>setStats(gData));safe(()=>initHero(gData));safe(()=>initTicker(countries));safe(()=>renderRt());safe(()=>renderMovers(countries));safe(()=>renderAE(regs,'20'));safe(()=>renderReg(regs,'20'));safe(()=>renderCards(countries));
-    setInterval(async()=>{try{gData=await api('global_simple');setStats(gData);updateHero(gData)}catch(e){console.warn('Refresh:',e)}},6*60*60*1000);
+    safe(()=>{if(typeof INTEL!=='undefined')INTEL.renderDashboard(gData,rtData,cData,regData)});
+    safe(()=>{if(typeof TRADE!=='undefined')TRADE.init()});
+    setInterval(async()=>{try{gData=await api('global_simple');setStats(gData);updateHero(gData);if(typeof INTEL!=='undefined'&&gData.length)INTEL.renderDashboard(gData,rtData,cData,regData);if(typeof TRADE!=='undefined')TRADE.refresh()}catch(e){console.warn('Refresh:',e)}},5*60*1000);
   }catch(err){console.error('Load failed:',err);const h=document.getElementById('heroChart');if(h)h.innerHTML=`<div style="text-align:center;color:#ef4444;padding:60px 20px;font-size:.85rem">Failed to load data.<br><small style="color:#52526e">${err.message}</small></div>`}
 }
 window.addEventListener('error',e=>console.warn('Global:',e.message));
